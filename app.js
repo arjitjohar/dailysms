@@ -1,5 +1,5 @@
 var twilio = require('twilio'),
-    client = twilio('ACCOUNTSID', 'AUTHTOKEN'),
+    client = twilio('AC7bf377a64795b6a35ad94cac1b1f904c', '8231cbacaa085bec696b0d180da146b3'),
     cronJob = require('cron').CronJob;
  
 var express = require('express'),
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 }));
  
 var Firebase = require('firebase'),
-    usersRef = new Firebase('{FIREBASEURL}/Users/');
+    usersRef = new Firebase('{https://moodbuddy-c5dae-default-rtdb.firebaseio.com/}/Users/');
  
 var numbers = [];
  
@@ -22,7 +22,7 @@ usersRef.on('child_added', function(snapshot) {
  
 var textJob = new cronJob( '0 18 * * *', function(){
   for( var i = 0; i < numbers.length; i++ ) {
-    client.sendMessage( { to:numbers[i], from:'YOURTWILIONUMBER', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
+    client.sendMessage( { to:numbers[i], from:'+16475594970', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
       console.log( data.body );
     });
   }
